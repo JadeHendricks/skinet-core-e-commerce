@@ -31,4 +31,17 @@ app.UseAuthorization();
 //maps the request to the endpoints for us automatically
 app.MapControllers();
 
+//create database if there is no DB available
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+var context = services.GetRequiredService<StoreContext>();
+var logger = services.GetRequiredService<ILogger<Program>>();
+
+try {
+    await context.Database.MigrateAsync();
+    await StoreContextSeed.SeedAsync(context); //seed DB
+} catch (Exception ex) {
+    logger.LogError(ex, "An error occured during migration");
+}
+
 app.Run();
