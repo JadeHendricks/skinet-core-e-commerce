@@ -11,6 +11,10 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
+
+        //ProductsWithTypesAndBrandsSpecification
+        // spec = { Criteria[Expression]: x => x.Id == id, Includes[list]: Count = 2 }
+
         private readonly IGenericRepository<Product> _productsRepo;
         private readonly IGenericRepository<ProductBrand> _productBrandRepo;
         private readonly IGenericRepository<ProductType> _productTypeRepo;

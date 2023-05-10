@@ -13,6 +13,7 @@ namespace Infrastructure.Data
 
             if (spec.Criteria != null) 
             {
+                //spec.Criteria == x => x.Id == id
                 query = query.Where(spec.Criteria);
             }
 

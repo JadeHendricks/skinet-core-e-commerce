@@ -26,6 +26,7 @@ namespace Infrastructure.Data
 
         public async Task<T> GetEntityWithSpec(ISpecification<T> spec)
         {
+            // spec = { Criteria[Expression]: x => x.Id == id, Includes[list]: Count = 2 I.E types and brands }
             return await ApplySpecification(spec).FirstOrDefaultAsync();
         }
 
