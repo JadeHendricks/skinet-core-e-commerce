@@ -7,6 +7,7 @@ namespace Core.Specifications
     {
         //BASE => Expression<Func<T, bool>> criteria
         public ProductsWithTypesAndBrandsSpecification(ProductSpecParams productParams): base(X => 
+        (string.IsNullOrEmpty(productParams.Search) || X.Name.ToLower().Contains(productParams.Search)) &&
         (!productParams.BrandId.HasValue || X.ProductBrandId == productParams.BrandId) && 
         (!productParams.TypeId.HasValue || X.ProductTypeId == productParams.TypeId))
         {

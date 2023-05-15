@@ -21,6 +21,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseStaticFiles();
+app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 //maps the request to the endpoints for us automatically
