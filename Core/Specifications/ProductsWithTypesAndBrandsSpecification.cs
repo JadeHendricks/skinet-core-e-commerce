@@ -6,17 +6,18 @@ namespace Core.Specifications
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
         //BASE => Expression<Func<T, bool>> criteria
-        public ProductsWithTypesAndBrandsSpecification(string sort, int? brandId, int? typeId): base(X => 
-        (!brandId.HasValue || X.ProductBrandId == brandId) && 
-        (!typeId.HasValue || X.ProductTypeId == typeId))
+        public ProductsWithTypesAndBrandsSpecification(ProductSpecParams productParams): base(X => 
+        (!productParams.BrandId.HasValue || X.ProductBrandId == productParams.BrandId) && 
+        (!productParams.TypeId.HasValue || X.ProductTypeId == productParams.TypeId))
         {
             AddInclude(x => x.ProductType);
             AddInclude(x => x.ProductBrand);
             AddOrderBy(x => x.Name);
+            ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 
-            if (!string.IsNullOrEmpty(sort)) 
+            if (!string.IsNullOrEmpty(productParams.Sort)) 
             {
-                switch (sort) 
+                switch (productParams.Sort) 
                 {
                     case "priceAsc":
                         AddOrderBy(p => p.Price);
