@@ -16,6 +16,12 @@ export class ShopComponent {
   
   public brandIdSelected = 0;
   public typeIdSelected = 0;
+  sortSelected = 'name';
+  sortOptions = [
+    { name: 'Alphabetical', value: 'name'},
+    { name: 'Price: Low to high', value: 'priceAsc'},
+    { name: 'Price: High to low', value: 'priceDesc'}
+  ]
 
   constructor(private shopService: ShopService) {
     this.getProducts();
@@ -24,7 +30,7 @@ export class ShopComponent {
    }
 
    private getProducts(): void {
-    this.shopService.getProducts(this.brandIdSelected, this.typeIdSelected).subscribe({
+    this.shopService.getProducts(this.brandIdSelected, this.typeIdSelected, this.sortSelected).subscribe({
       next: response => this.products = response.data,
       error: error => console.log(error)
     });
@@ -51,6 +57,11 @@ export class ShopComponent {
 
    public onTypeSelected(typeId: number): void {
     this.typeIdSelected = typeId;
+    this.getProducts();
+   }
+
+   public onSortSelected(event: any): void {
+    this.sortSelected = event.target.value;
     this.getProducts();
    }
 }
