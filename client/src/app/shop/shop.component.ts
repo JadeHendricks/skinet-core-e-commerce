@@ -61,11 +61,13 @@ export class ShopComponent {
 
    public onBrandSelected(brandId: number): void {
     this.shopParams.brandId = brandId;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
    }
 
    public onTypeSelected(typeId: number): void {
     this.shopParams.typeId = typeId;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
    }
 
@@ -83,6 +85,7 @@ export class ShopComponent {
 
    public onSearch(): void {
     this.shopParams.search =this.searchTerm?.nativeElement.value;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
    }
 
