@@ -11,5 +11,14 @@
 }
 
 a {
-    color: #212529;
+    color: #343a40;
+    text-decoration: none;
+
+    &.active {
+        color: orange;
+    }
+}
+
+.logo {
+    cursor: pointer;
 }
