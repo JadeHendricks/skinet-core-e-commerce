@@ -20,6 +20,7 @@ export class ProductsDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProduct();
+    this.bcService.set('@productDetails', ' ');
   }
 
   private loadProduct(): void {
